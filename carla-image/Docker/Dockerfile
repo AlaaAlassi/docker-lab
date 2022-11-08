@@ -25,10 +25,13 @@ RUN   add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN   apt-get install -y autoconf 
 RUN   apt-get install -y rsync
 RUN   pip3 install distro
+RUN   apt-get install -y libpng-dev 
+RUN   apt-get install -y libtiff5-dev 
+RUN   apt-get install -y libjpeg-dev 
 
 WORKDIR "/carla"
 
-#CMD ["cat", "./Util/BuildTools/BuildOSM2ODR.sh"]
+RUN make PythonAPI
 
-CMD ["make", "PythonAPI"]
+CMD ["ls"]
 #CMD ["python3", "generate-traffic.py"]
