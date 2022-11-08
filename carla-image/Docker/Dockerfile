@@ -28,6 +28,7 @@ RUN   pip3 install distro
 RUN   apt-get install -y libpng-dev 
 RUN   apt-get install -y libtiff5-dev 
 RUN   apt-get install -y libjpeg-dev 
+RUN   pip3 install numpy
 
 WORKDIR "/carla"
 
