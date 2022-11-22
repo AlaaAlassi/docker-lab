@@ -1,0 +1,23 @@
+# To authinticate the container display to Xserver
+# Open a terminal on your host and run
+# xauth list|grep `uname -n`
+# Copy the the hexatoken into clipboard
+# Inside the container, past the heatoken, and run this line
+# xauth add $DISPLAY . <hexatoken>
+
+version: "2.3"
+services:
+  app:
+    image: melodic-desktop-full:learn
+    build: .
+    runtime: nvidia
+    privileged: true
+    environment:
+      - "NVIDIA_VISIBLE_DEVICES=all"
+      - "NVIDIA_DRIVER_CAPABILITIES=graphics"   
+      - DISPLAY=${DISPLAY}
+      - "QT_X11_NO_MITSHM=1"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    network_mode: host
+    command: tail -F anything
