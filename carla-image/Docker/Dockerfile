@@ -19,8 +19,6 @@ RUN apt-get install -y clang-8 \
     update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-8/bin/clang++ 180 && \
     update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-8/bin/clang 180
 
-COPY generate-traffic.py /
-
 RUN   add-apt-repository ppa:ubuntu-toolchain-r/test 
 RUN   apt-get install -y autoconf 
 RUN   apt-get install -y rsync
@@ -35,4 +33,3 @@ WORKDIR "/carla"
 RUN make PythonAPI
 
 CMD ["ls"]
-#CMD ["python3", "generate-traffic.py"]
