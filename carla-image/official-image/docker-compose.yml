@@ -1,0 +1,22 @@
+version: "3"
+services:
+  app:
+    image: carlasim/carla:0.9.13
+    container_name: carla-server
+    network_mode: host
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    environment:
+      - DISPLAY=${DISPLAY}
+    command: ./CarlaUE4.sh
+
+
+
+
+    #sudo docker run --privileged --gpus all --net=host -e DISPLAY=$DISPLAY carlasim/carla:0.9.12 /bin/bash ./CarlaUE4.sh
